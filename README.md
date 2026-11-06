@@ -142,6 +142,18 @@ O workflow `.github/workflows/ci.yml` executa os testes da API e um smoke test b
 - `backend/README.md`
 - `frontend/README.md`
 
+## ♿ Acessibilidade
+
+- HTML semântico com `lang="pt-BR"`, atalho "Pular para o conteúdo" e foco visível.
+- Rótulos associados aos campos, `aria-label` em controles dinâmicos e mensagens com `aria-live`.
+- Respeito a `prefers-reduced-motion` e layout responsivo (verificado em 390 px).
+- Auditoria automatizada com `axe-core` (WCAG 2 A/AA) sem violações nas telas avaliadas.
+
+## 📖 Documentação da API
+
+- Swagger UI: https://p2.carneirojunior.com.br/docs
+- OpenAPI: https://p2.carneirojunior.com.br/openapi.json
+
 ## 🎯 Próximos passos
 
 - Refinar observabilidade e tratamento de erros

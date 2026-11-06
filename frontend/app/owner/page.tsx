@@ -201,16 +201,18 @@ export default function OwnerPage() {
     <main>
       <Header />
       <section className="container-box space-y-4">
-        {message && <div className="card text-emerald-700">{message}</div>}
-        {errorMessage && <div className="card text-red-700">{errorMessage}</div>}
+        <div aria-live="polite">
+          {message && <div className="card text-emerald-700">{message}</div>}
+          {errorMessage && <div className="card text-red-700">{errorMessage}</div>}
+        </div>
 
         <div className="grid gap-4 lg:grid-cols-2">
           <form onSubmit={createRestaurant} className="card space-y-2">
             <h2 className="text-xl font-black text-red-700">Onboarding do restaurante</h2>
-            <input className="w-full rounded-lg border border-red-100 p-2" placeholder="Nome" value={restaurantForm.name} onChange={(e) => setRestaurantForm((current) => ({ ...current, name: e.target.value }))} required />
-            <textarea className="w-full rounded-lg border border-red-100 p-2" placeholder="Descricao" value={restaurantForm.description} onChange={(e) => setRestaurantForm((current) => ({ ...current, description: e.target.value }))} />
-            <input className="w-full rounded-lg border border-red-100 p-2" type="number" step="0.01" placeholder="Taxa de entrega" value={restaurantForm.delivery_fee} onChange={(e) => setRestaurantForm((current) => ({ ...current, delivery_fee: e.target.value }))} required />
-            <input className="w-full rounded-lg border border-red-100 p-2" type="number" placeholder="Tempo medio de entrega" value={restaurantForm.avg_delivery_time_min} onChange={(e) => setRestaurantForm((current) => ({ ...current, avg_delivery_time_min: e.target.value }))} required />
+            <input aria-label="Nome do restaurante" className="w-full rounded-lg border border-red-100 p-2" placeholder="Nome" value={restaurantForm.name} onChange={(e) => setRestaurantForm((current) => ({ ...current, name: e.target.value }))} required />
+            <textarea aria-label="Descricao do restaurante" className="w-full rounded-lg border border-red-100 p-2" placeholder="Descricao" value={restaurantForm.description} onChange={(e) => setRestaurantForm((current) => ({ ...current, description: e.target.value }))} />
+            <input aria-label="Taxa de entrega" className="w-full rounded-lg border border-red-100 p-2" type="number" step="0.01" placeholder="Taxa de entrega" value={restaurantForm.delivery_fee} onChange={(e) => setRestaurantForm((current) => ({ ...current, delivery_fee: e.target.value }))} required />
+            <input aria-label="Tempo medio de entrega em minutos" className="w-full rounded-lg border border-red-100 p-2" type="number" placeholder="Tempo medio de entrega" value={restaurantForm.avg_delivery_time_min} onChange={(e) => setRestaurantForm((current) => ({ ...current, avg_delivery_time_min: e.target.value }))} required />
             <button className="btn-primary" type="submit">Criar restaurante</button>
           </form>
 
@@ -220,6 +222,7 @@ export default function OwnerPage() {
             {!restaurantsQuery.data?.length && !restaurantsQuery.isLoading && <p className="text-sm text-slate-500">Nenhum restaurante cadastrado ainda.</p>}
             {!!restaurantsQuery.data?.length && (
               <select
+                aria-label="Restaurante selecionado"
                 className="w-full rounded-lg border border-red-100 p-2"
                 value={selectedRestaurantId ?? ""}
                 onChange={(e) => setSelectedRestaurantId(Number(e.target.value))}
@@ -237,9 +240,9 @@ export default function OwnerPage() {
         <div className="grid gap-4 lg:grid-cols-2">
           <form onSubmit={saveProduct} className="card space-y-2">
             <h2 className="text-xl font-black text-red-700">{editingProductId ? "Editar produto" : "Criar produto"}</h2>
-            <input className="w-full rounded-lg border border-red-100 p-2" placeholder="Nome do produto" value={productForm.name} onChange={(e) => setProductForm((current) => ({ ...current, name: e.target.value }))} required />
-            <textarea className="w-full rounded-lg border border-red-100 p-2" placeholder="Descricao" value={productForm.description} onChange={(e) => setProductForm((current) => ({ ...current, description: e.target.value }))} />
-            <input className="w-full rounded-lg border border-red-100 p-2" type="number" step="0.01" placeholder="Preco" value={productForm.price} onChange={(e) => setProductForm((current) => ({ ...current, price: e.target.value }))} required />
+            <input aria-label="Nome do produto" className="w-full rounded-lg border border-red-100 p-2" placeholder="Nome do produto" value={productForm.name} onChange={(e) => setProductForm((current) => ({ ...current, name: e.target.value }))} required />
+            <textarea aria-label="Descricao do produto" className="w-full rounded-lg border border-red-100 p-2" placeholder="Descricao" value={productForm.description} onChange={(e) => setProductForm((current) => ({ ...current, description: e.target.value }))} />
+            <input aria-label="Preco do produto" className="w-full rounded-lg border border-red-100 p-2" type="number" step="0.01" placeholder="Preco" value={productForm.price} onChange={(e) => setProductForm((current) => ({ ...current, price: e.target.value }))} required />
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={productForm.is_available} onChange={(e) => setProductForm((current) => ({ ...current, is_available: e.target.checked }))} />
               Produto disponivel
@@ -268,6 +271,7 @@ export default function OwnerPage() {
                   </div>
                   <div className="flex gap-2">
                     <button
+                      type="button"
                       className="rounded-lg border border-red-200 px-3 py-1 text-sm"
                       onClick={() => {
                         setEditingProductId(product.id);
@@ -281,7 +285,7 @@ export default function OwnerPage() {
                     >
                       Editar
                     </button>
-                    <button className="rounded-lg border border-red-200 px-3 py-1 text-sm" onClick={() => deleteProduct(product.id)}>
+                    <button type="button" className="rounded-lg border border-red-200 px-3 py-1 text-sm" onClick={() => deleteProduct(product.id)}>
                       Excluir
                     </button>
                   </div>
@@ -306,6 +310,7 @@ export default function OwnerPage() {
                 </div>
                 <div className="space-y-2">
                   <select
+                    aria-label={`Status do pedido ${order.id}`}
                     className="w-full rounded-lg border border-red-100 p-2"
                     value={statusByOrder[order.id] ?? order.status}
                     onChange={(e) => setStatusByOrder((current) => ({ ...current, [order.id]: e.target.value }))}
@@ -322,6 +327,7 @@ export default function OwnerPage() {
                 </div>
                 <div className="space-y-2">
                   <select
+                    aria-label={`Entregador do pedido ${order.id}`}
                     className="w-full rounded-lg border border-red-100 p-2"
                     value={courierByOrder[order.id] ?? ""}
                     onChange={(e) => setCourierByOrder((current) => ({ ...current, [order.id]: e.target.value }))}

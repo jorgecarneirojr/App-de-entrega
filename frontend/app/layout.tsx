@@ -20,7 +20,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        <Providers>{children}</Providers>
+        <a href="#conteudo" className="skip-link">
+          Pular para o conteudo
+        </a>
+        <div id="conteudo">
+          <Providers>{children}</Providers>
+        </div>
       </body>
     </html>
   );

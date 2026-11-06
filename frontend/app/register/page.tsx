@@ -39,16 +39,26 @@ export default function RegisterPage() {
       <section className="container-box">
         <form onSubmit={onSubmit} className="card mx-auto max-w-xl space-y-3">
           <h1 className="text-2xl font-black text-red-700">Criar conta</h1>
-          {errorMessage && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{errorMessage}</p>}
-          {successMessage && <p className="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-700">{successMessage}</p>}
+          <div aria-live="polite">
+            {errorMessage && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{errorMessage}</p>}
+            {successMessage && <p className="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-700">{successMessage}</p>}
+          </div>
+          <label htmlFor="register-name" className="text-sm font-medium">Nome</label>
           <input
+            id="register-name"
+            name="name"
+            autoComplete="name"
             className="w-full rounded-lg border border-red-100 p-2"
             placeholder="Nome"
             value={form.name}
             onChange={(e) => setForm((current) => ({ ...current, name: e.target.value }))}
             required
           />
+          <label htmlFor="register-email" className="text-sm font-medium">Email</label>
           <input
+            id="register-email"
+            name="email"
+            autoComplete="email"
             className="w-full rounded-lg border border-red-100 p-2"
             type="email"
             placeholder="Email"
@@ -56,7 +66,11 @@ export default function RegisterPage() {
             onChange={(e) => setForm((current) => ({ ...current, email: e.target.value }))}
             required
           />
+          <label htmlFor="register-password" className="text-sm font-medium">Senha</label>
           <input
+            id="register-password"
+            name="password"
+            autoComplete="new-password"
             className="w-full rounded-lg border border-red-100 p-2"
             type="password"
             placeholder="Senha"
@@ -65,7 +79,10 @@ export default function RegisterPage() {
             onChange={(e) => setForm((current) => ({ ...current, password: e.target.value }))}
             required
           />
+          <label htmlFor="register-role" className="text-sm font-medium">Perfil</label>
           <select
+            id="register-role"
+            name="role"
             className="w-full rounded-lg border border-red-100 p-2"
             value={form.role}
             onChange={(e) => setForm((current) => ({ ...current, role: e.target.value as UserRole }))}

@@ -132,8 +132,10 @@ export default function CartPage() {
             <p className="mt-2 text-sm text-slate-600">Ajuste quantidades, confirme o endereco e finalize o pedido em poucos passos.</p>
           </div>
 
-          {errorMessage && <div className="card text-red-700">{errorMessage}</div>}
-          {successMessage && <div className="card text-emerald-700">{successMessage}</div>}
+          <div aria-live="polite">
+            {errorMessage && <div className="card text-red-700">{errorMessage}</div>}
+            {successMessage && <div className="card text-emerald-700">{successMessage}</div>}
+          </div>
 
           <div className="grid gap-3">
             {items.map((item) => (
@@ -173,7 +175,7 @@ export default function CartPage() {
             {!user ? (
               <p className="mt-3 text-sm text-slate-600">Faca login para cadastrar endereco e concluir o pedido.</p>
             ) : (
-              <button className="btn-primary mt-3" onClick={createOrder} disabled={isSubmitting || !items.length}>
+              <button type="button" className="btn-primary mt-3" onClick={createOrder} disabled={isSubmitting || !items.length}>
                 {isSubmitting ? "Finalizando..." : "Finalizar Pedido"}
               </button>
             )}
@@ -192,6 +194,8 @@ export default function CartPage() {
                     <label className="flex cursor-pointer items-start gap-3">
                       <input
                         type="radio"
+                        name="delivery-address"
+                        aria-label={`Selecionar endereco ${address.street}, ${address.number}, ${address.district}`}
                         checked={selectedAddressId === address.id}
                         onChange={() => setSelectedAddressId(address.id)}
                       />
@@ -209,6 +213,7 @@ export default function CartPage() {
                     </label>
                     <div className="mt-3 flex gap-2">
                       <button
+                        type="button"
                         className="rounded-lg border border-red-200 px-3 py-1 text-sm"
                         onClick={() => {
                           setEditingAddressId(address.id);
@@ -227,6 +232,7 @@ export default function CartPage() {
                         Editar
                       </button>
                       <button
+                        type="button"
                         className="rounded-lg border border-red-200 px-3 py-1 text-sm"
                         onClick={() => removeAddress(address.id)}
                       >
@@ -255,6 +261,7 @@ export default function CartPage() {
               ] as Array<[keyof AddressPayload, string]>).map(([field, label]) => (
                 <input
                   key={field}
+                  aria-label={label}
                   className="w-full rounded-lg border border-red-100 p-2"
                   placeholder={label}
                   value={addressForm[field] ?? ""}

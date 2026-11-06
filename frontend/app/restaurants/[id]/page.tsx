@@ -66,7 +66,9 @@ export default function RestaurantMenuPage() {
                     <p className="font-semibold text-red-700">R$ {Number(product.price).toFixed(2)}</p>
                   </div>
                   <button
+                    type="button"
                     className="btn-primary"
+                    aria-label={`Adicionar ${product.name} ao carrinho`}
                     onClick={() =>
                       addItem(restaurantId, {
                         product_id: product.id,

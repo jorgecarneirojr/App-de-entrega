@@ -81,8 +81,10 @@ export default function CourierPage() {
     <main>
       <Header />
       <section className="container-box space-y-4">
-        {message && <div className="card text-emerald-700">{message}</div>}
-        {errorMessage && <div className="card text-red-700">{errorMessage}</div>}
+        <div aria-live="polite">
+          {message && <div className="card text-emerald-700">{message}</div>}
+          {errorMessage && <div className="card text-red-700">{errorMessage}</div>}
+        </div>
 
         <div className="card">
           <h1 className="text-2xl font-black text-red-700">Painel do entregador</h1>
@@ -102,6 +104,7 @@ export default function CourierPage() {
 
               <div className="space-y-2">
                 <select
+                  aria-label={`Status da entrega ${delivery.id}`}
                   className="w-full rounded-lg border border-red-100 p-2"
                   value={statusByDelivery[delivery.id] ?? delivery.status}
                   onChange={(e) => setStatusByDelivery((current) => ({ ...current, [delivery.id]: e.target.value }))}
@@ -119,12 +122,16 @@ export default function CourierPage() {
 
               <div className="space-y-2">
                 <input
+                  aria-label={`Latitude da entrega ${delivery.id}`}
+                  inputMode="decimal"
                   className="w-full rounded-lg border border-red-100 p-2"
                   placeholder="Latitude"
                   value={locationByDelivery[delivery.id]?.latitude ?? ""}
                   onChange={(e) => setLocationByDelivery((current) => ({ ...current, [delivery.id]: { latitude: e.target.value, longitude: current[delivery.id]?.longitude ?? "" } }))}
                 />
                 <input
+                  aria-label={`Longitude da entrega ${delivery.id}`}
+                  inputMode="decimal"
                   className="w-full rounded-lg border border-red-100 p-2"
                   placeholder="Longitude"
                   value={locationByDelivery[delivery.id]?.longitude ?? ""}

@@ -39,9 +39,15 @@ export default function LoginPage() {
       <section className="container-box">
         <form onSubmit={onSubmit} className="card mx-auto max-w-md space-y-3">
           <h1 className="text-2xl font-black text-red-700">Entrar</h1>
-          {errorMessage && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{errorMessage}</p>}
-          {successMessage && <p className="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-700">{successMessage}</p>}
+          <div aria-live="polite">
+            {errorMessage && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{errorMessage}</p>}
+            {successMessage && <p className="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-700">{successMessage}</p>}
+          </div>
+          <label htmlFor="login-email" className="text-sm font-medium">Email</label>
           <input
+            id="login-email"
+            name="email"
+            autoComplete="email"
             className="w-full rounded-lg border border-red-100 p-2"
             type="email"
             placeholder="Email"
@@ -49,7 +55,11 @@ export default function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          <label htmlFor="login-password" className="text-sm font-medium">Senha</label>
           <input
+            id="login-password"
+            name="password"
+            autoComplete="current-password"
             className="w-full rounded-lg border border-red-100 p-2"
             type="password"
             placeholder="Senha"
