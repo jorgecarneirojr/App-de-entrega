@@ -17,7 +17,7 @@ export function Header() {
 
   return (
     <header className="container-box relative z-40">
-      <nav aria-label="Navegacao principal" className="glass-panel flex flex-col gap-4 px-5 py-4 md:flex-row md:items-center md:justify-between">
+      <nav aria-label="Navegação principal" className="glass-panel flex flex-col gap-4 px-5 py-4 md:flex-row md:items-center md:justify-between">
         <div>
           <Link href="/" className="text-xl font-black tracking-tight text-red-700">
             Entrega PI II
@@ -26,7 +26,7 @@ export function Header() {
         </div>
 
         <div className="flex flex-wrap items-center gap-3 text-sm font-medium">
-          <Link href="/" aria-current={isActive("/") ? "page" : undefined}>Inicio</Link>
+          <Link href="/" aria-current={isActive("/") ? "page" : undefined}>Início</Link>
           <Link href="/cart" aria-current={isActive("/cart") ? "page" : undefined} aria-label={`Carrinho com ${cartCount} itens`} className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white/80 px-3 py-1.5">
             <span>Carrinho</span>
             <span className="rounded-full bg-red-600 px-2 py-0.5 text-xs font-bold text-white">{cartCount}</span>

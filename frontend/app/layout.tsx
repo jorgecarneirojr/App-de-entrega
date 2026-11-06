@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body>
         <a href="#conteudo" className="skip-link">
-          Pular para o conteudo
+          Pular para o conteúdo
         </a>
         <RouteAnnouncer />
         <div id="conteudo">

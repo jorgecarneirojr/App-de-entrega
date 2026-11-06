@@ -50,7 +50,7 @@ export function DeliveryRouteMap({ origin, destination }: DeliveryRouteMapProps)
   if (!hasCoordinates) {
     return (
       <div role="status" className="rounded-2xl border border-dashed border-red-200 bg-white/70 p-4 text-sm text-slate-500">
-        Selecione um endereco com localizacao confirmada para visualizar a rota.
+        Selecione um endereço com localização confirmada para visualizar a rota.
       </div>
     );
   }
@@ -67,10 +67,10 @@ export function DeliveryRouteMap({ origin, destination }: DeliveryRouteMapProps)
   };
 
   const routeSummary = routeQuery.data
-    ? `Rota de ${origin.label} para ${destination.label}: ${routeQuery.data.distance_km.toFixed(1)} quilometros, aproximadamente ${routeQuery.data.duration_min} minutos de carro.`
+    ? `Rota de ${origin.label} para ${destination.label}: ${routeQuery.data.distance_km.toFixed(1)} quilômetros, aproximadamente ${routeQuery.data.duration_min} minutos de carro.`
     : routeQuery.isError
-      ? "Nao foi possivel calcular a rota agora."
-      : "Calculando rota entre a loja e o endereco de entrega.";
+      ? "Não foi possível calcular a rota agora."
+      : "Calculando rota entre a loja e o endereço de entrega.";
 
   return (
     <div className="overflow-hidden rounded-2xl border border-red-100 bg-white">
@@ -99,7 +99,7 @@ export function DeliveryRouteMap({ origin, destination }: DeliveryRouteMapProps)
       </div>
       <div aria-live="polite" className="flex flex-wrap items-center justify-between gap-2 border-t border-red-100 px-4 py-3 text-sm">
         {routeQuery.isLoading && <span className="text-slate-500">Calculando rota...</span>}
-        {routeQuery.isError && <span className="text-red-700">Nao foi possivel calcular a rota agora.</span>}
+        {routeQuery.isError && <span className="text-red-700">Não foi possível calcular a rota agora.</span>}
         {routeQuery.data && (
           <span className="font-semibold text-slate-800">
             {routeQuery.data.distance_km.toFixed(1)} km &bull; aproximadamente {routeQuery.data.duration_min} min de carro
