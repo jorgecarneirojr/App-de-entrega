@@ -49,7 +49,7 @@ export function DeliveryRouteMap({ origin, destination }: DeliveryRouteMapProps)
 
   if (!hasCoordinates) {
     return (
-      <div className="rounded-2xl border border-dashed border-red-200 bg-white/70 p-4 text-sm text-slate-500">
+      <div role="status" className="rounded-2xl border border-dashed border-red-200 bg-white/70 p-4 text-sm text-slate-500">
         Selecione um endereco com localizacao confirmada para visualizar a rota.
       </div>
     );
@@ -66,9 +66,31 @@ export function DeliveryRouteMap({ origin, destination }: DeliveryRouteMapProps)
     label: destination.label
   };
 
+  const routeSummary = routeQuery.data
+    ? `Rota de ${origin.label} para ${destination.label}: ${routeQuery.data.distance_km.toFixed(1)} quilometros, aproximadamente ${routeQuery.data.duration_min} minutos de carro.`
+    : routeQuery.isError
+      ? "Nao foi possivel calcular a rota agora."
+      : "Calculando rota entre a loja e o endereco de entrega.";
+
   return (
     <div className="overflow-hidden rounded-2xl border border-red-100 bg-white">
-      <div className="h-72 w-full">
+      <div className="space-y-1 px-4 pt-3 text-sm">
+        <p className="text-slate-600">
+          <span className="font-semibold text-slate-900">De:</span> {origin.label}
+        </p>
+        <p className="text-slate-600">
+          <span className="font-semibold text-slate-900">Para:</span> {destination.label}
+        </p>
+      </div>
+      <p id="route-summary" className="sr-only" aria-live="polite">
+        {routeSummary}
+      </p>
+      <div
+        role="region"
+        aria-label="Mapa interativo da rota de entrega"
+        aria-describedby="route-summary"
+        className="h-72 w-full"
+      >
         <RouteMapCanvas
           origin={originPoint}
           destination={destinationPoint}

@@ -234,13 +234,16 @@ inexistente e `422` para validação.
 
 A interface foi construída com práticas de acessibilidade e verificada com auditoria automatizada:
 
+- Painel de acessibilidade no cabeçalho com tamanho do texto (A/A+/A++), alto contraste e redução de movimento.
+- Página dedicada em [`/acessibilidade`](https://p2.carneirojunior.com.br/acessibilidade).
 - HTML semântico, `lang="pt-BR"` e hierarquia de títulos.
 - Atalho “Pular para o conteúdo” e foco visível.
-- Rótulos associados aos campos e `aria-label` em controles dinâmicos.
-- Mensagens de status com `aria-live`.
-- Respeito a `prefers-reduced-motion`.
+- Rótulos associados aos campos, `aria-label` em controles dinâmicos e erros com `aria-invalid`/`aria-describedby`.
+- Mensagens de status e mudança de página com `aria-live`.
+- Mapa com região nomeada e resumo textual da rota.
+- Respeito a `prefers-reduced-motion` e opção manual de reduzir movimento.
 - Layout responsivo verificado em 390 px, sem rolagem horizontal.
-- Auditoria `axe-core` (WCAG 2 A/AA) sem violações nas telas avaliadas.
+- Auditoria `axe-core` (WCAG 2 A/AA) sem violações nas telas avaliadas, incluindo o painel aberto.
 
 Detalhes e checklist em [`docs/accessibility.md`](docs/accessibility.md).
 

@@ -40,13 +40,15 @@ export default function LoginPage() {
         <form onSubmit={onSubmit} className="card mx-auto max-w-md space-y-3">
           <h1 className="text-2xl font-black text-red-700">Entrar</h1>
           <div aria-live="polite">
-            {errorMessage && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{errorMessage}</p>}
+            {errorMessage && <p id="login-error" role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{errorMessage}</p>}
             {successMessage && <p className="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-700">{successMessage}</p>}
           </div>
           <label htmlFor="login-email" className="text-sm font-medium">Email</label>
           <input
             id="login-email"
             name="email"
+            aria-invalid={Boolean(errorMessage)}
+            aria-describedby={errorMessage ? "login-error" : undefined}
             autoComplete="email"
             className="w-full rounded-lg border border-red-100 p-2"
             type="email"
@@ -59,6 +61,8 @@ export default function LoginPage() {
           <input
             id="login-password"
             name="password"
+            aria-invalid={Boolean(errorMessage)}
+            aria-describedby={errorMessage ? "login-error" : undefined}
             autoComplete="current-password"
             className="w-full rounded-lg border border-red-100 p-2"
             type="password"

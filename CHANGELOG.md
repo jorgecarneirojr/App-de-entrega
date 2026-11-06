@@ -33,7 +33,8 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 - README reescrito com contexto acadêmico, capturas, arquitetura e guias.
 - CI com jobs separados, cache e `npm ci`.
-- Acessibilidade reforçada (rótulos, ARIA, foco, `prefers-reduced-motion`).
+- Acessibilidade reforçada: painel de ajustes (texto, alto contraste e movimento), anúncio de rota, resumo textual do mapa e página `/acessibilidade`.
+- Rótulos, ARIA, foco visível, erros associados aos campos e `prefers-reduced-motion`.
 
 ### Corrigido
 

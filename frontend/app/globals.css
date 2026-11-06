@@ -129,3 +129,144 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Preferências de acessibilidade */
+html.a11y-font-lg {
+  font-size: 18px;
+}
+
+html.a11y-font-xl {
+  font-size: 20px;
+}
+
+html.a11y-high-contrast body {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.a11y-high-contrast header,
+html.a11y-high-contrast main,
+html.a11y-high-contrast nav,
+html.a11y-high-contrast section,
+html.a11y-high-contrast article,
+html.a11y-high-contrast .glass-panel,
+html.a11y-high-contrast .card,
+html.a11y-high-contrast [class*="bg-white"] {
+  background: #000000 !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+html.a11y-high-contrast h1,
+html.a11y-high-contrast h2,
+html.a11y-high-contrast h3,
+html.a11y-high-contrast h4,
+html.a11y-high-contrast p,
+html.a11y-high-contrast span,
+html.a11y-high-contrast a,
+html.a11y-high-contrast li,
+html.a11y-high-contrast label,
+html.a11y-high-contrast td,
+html.a11y-high-contrast th,
+html.a11y-high-contrast button {
+  color: #ffffff !important;
+}
+
+html.a11y-high-contrast .text-slate-400,
+html.a11y-high-contrast .text-slate-500,
+html.a11y-high-contrast .text-slate-600,
+html.a11y-high-contrast .text-slate-700,
+html.a11y-high-contrast .text-slate-800,
+html.a11y-high-contrast .text-slate-900 {
+  color: #e5e5e5 !important;
+}
+
+html.a11y-high-contrast a {
+  text-decoration: underline;
+}
+
+html.a11y-high-contrast input,
+html.a11y-high-contrast select,
+html.a11y-high-contrast textarea {
+  background: #000000 !important;
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+}
+
+html.a11y-high-contrast input::placeholder,
+html.a11y-high-contrast textarea::placeholder {
+  color: #d4d4d4 !important;
+}
+
+html.a11y-high-contrast .btn-primary {
+  background: #ffff00 !important;
+  border-color: #ffff00 !important;
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast .btn-secondary {
+  background: #000000 !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+html.a11y-high-contrast .bg-red-100,
+html.a11y-high-contrast .bg-red-100\/80,
+html.a11y-high-contrast .bg-orange-100,
+html.a11y-high-contrast .bg-emerald-100,
+html.a11y-high-contrast .bg-red-600:not(.btn-primary),
+html.a11y-high-contrast .bg-red-700:not(.btn-primary) {
+  background: #ffff00 !important;
+  border-color: #000000 !important;
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast .bg-red-100 *,
+html.a11y-high-contrast .bg-red-100\/80 *,
+html.a11y-high-contrast .bg-orange-100 *,
+html.a11y-high-contrast .bg-emerald-100 *,
+html.a11y-high-contrast .bg-red-600:not(.btn-primary) *,
+html.a11y-high-contrast .bg-red-700:not(.btn-primary) * {
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast .bg-red-50,
+html.a11y-high-contrast .bg-red-50\/50,
+html.a11y-high-contrast .bg-amber-50,
+html.a11y-high-contrast .bg-emerald-50 {
+  background: #000000 !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+html.a11y-high-contrast .btn-primary * {
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast .badge {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast button {
+  border-color: #ffffff !important;
+}
+
+html.a11y-high-contrast *:focus-visible {
+  outline-color: #ffff00;
+}
+
+html.a11y-high-contrast *,
+html.a11y-high-contrast *::before,
+html.a11y-high-contrast *::after {
+  transition: none !important;
+}
+
+html.a11y-reduce-motion,
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after {
+  animation: none !important;
+  scroll-behavior: auto !important;
+  transition: none !important;
+}

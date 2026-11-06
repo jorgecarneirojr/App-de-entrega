@@ -3,6 +3,7 @@ import "leaflet/dist/leaflet.css";
 import "./globals.css";
 
 import { Providers } from "@/components/providers";
+import { RouteAnnouncer } from "@/components/route-announcer";
 
 export const metadata: Metadata = {
   title: {
@@ -24,6 +25,7 @@ export default function RootLayout({
         <a href="#conteudo" className="skip-link">
           Pular para o conteudo
         </a>
+        <RouteAnnouncer />
         <div id="conteudo">
           <Providers>{children}</Providers>
         </div>

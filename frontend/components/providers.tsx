@@ -4,6 +4,7 @@ import axios from "axios";
 import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
+import { AccessibilityEffects } from "@/components/accessibility-effects";
 import { api } from "@/lib/api";
 import { User } from "@/lib/types";
 import { useAuthStore } from "@/store/auth";
@@ -53,6 +54,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <AccessibilityEffects />
       <SessionBootstrap />
       {children}
     </QueryClientProvider>

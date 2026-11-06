@@ -59,10 +59,10 @@ export default function RouteMapCanvas({ origin, destination, geometry }: RouteM
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[origin.latitude, origin.longitude]} icon={storeIcon}>
+      <Marker position={[origin.latitude, origin.longitude]} icon={storeIcon} title={origin.label}>
         <Popup>{origin.label}</Popup>
       </Marker>
-      <Marker position={[destination.latitude, destination.longitude]} icon={addressIcon}>
+      <Marker position={[destination.latitude, destination.longitude]} icon={addressIcon} title={destination.label}>
         <Popup>{destination.label}</Popup>
       </Marker>
       <Polyline positions={positions} pathOptions={{ color: "#b91c1c", weight: 5, opacity: 0.8 }} />

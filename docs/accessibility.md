@@ -15,9 +15,18 @@ diretrizes WCAG 2. O compromisso é com a melhoria contínua, não com uma certi
 | Contraste | Paleta com contraste adequado para texto e botões |
 | Responsividade | Layout adaptável, verificado em 390 px sem rolagem horizontal |
 | Semântica | `header`, `nav`, `main`, `section`, `article`, títulos hierárquicos |
+| Preferências | Painel com tamanho do texto (A/A+/A++), alto contraste e redução de movimento, persistido no navegador |
+| Mudança de rota | Região `aria-live` anuncia a página atual |
+| Mapa | Região nomeada, marcadores com título e resumo textual da rota |
+| Página dedicada | `/acessibilidade` com recursos, avaliação e limitações |
 | Mídia | Sem imagens decorativas no conteúdo principal; ícones acompanhados de texto |
 
 ## 2. Auditoria automatizada
+
+O painel de acessibilidade e o modo de alto contraste estão ilustrados abaixo.
+
+![Painel de acessibilidade](images/accessibility-panel.png)
+![Modo de alto contraste](images/high-contrast.png)
 
 Foi utilizada a ferramenta **axe-core** com as regras WCAG 2 níveis A e AA nas telas:
 
@@ -28,8 +37,9 @@ Foi utilizada a ferramenta **axe-core** com as regras WCAG 2 níveis A e AA nas 
 - Carrinho (`/cart`)
 - Painel do restaurante (`/owner`)
 - Painel do entregador (`/courier`)
+- Página de acessibilidade (`/acessibilidade`)
 
-**Resultado:** nenhuma violação reportada nas telas avaliadas.
+**Resultado:** nenhuma violação reportada nas telas avaliadas, incluindo o painel de acessibilidade aberto.
 
 > A auditoria automatizada cobre parte dos critérios. Não substitui testes com leitores de tela
 > (NVDA, VoiceOver), navegação apenas por teclado ou avaliação com usuários.
@@ -43,6 +53,8 @@ Foi utilizada a ferramenta **axe-core** com as regras WCAG 2 níveis A e AA nas 
 - [ ] Testar zoom de 200% e largura de 390 px.
 - [ ] Confirmar que mensagens de erro são anunciadas.
 - [ ] Verificar que o mapa possui alternativa textual (distância e endereço).
+- [ ] Testar o painel de acessibilidade: A/A+/A++, alto contraste, redução de movimento e restauração.
+- [ ] Confirmar que a mudança de página é anunciada por leitor de tela.
 
 ## 4. Limitações conhecidas
 

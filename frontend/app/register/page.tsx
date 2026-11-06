@@ -40,12 +40,14 @@ export default function RegisterPage() {
         <form onSubmit={onSubmit} className="card mx-auto max-w-xl space-y-3">
           <h1 className="text-2xl font-black text-red-700">Criar conta</h1>
           <div aria-live="polite">
-            {errorMessage && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{errorMessage}</p>}
+            {errorMessage && <p id="register-error" role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{errorMessage}</p>}
             {successMessage && <p className="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-700">{successMessage}</p>}
           </div>
           <label htmlFor="register-name" className="text-sm font-medium">Nome</label>
           <input
             id="register-name"
+            aria-invalid={Boolean(errorMessage)}
+            aria-describedby={errorMessage ? "register-error" : undefined}
             name="name"
             autoComplete="name"
             className="w-full rounded-lg border border-red-100 p-2"
@@ -57,6 +59,8 @@ export default function RegisterPage() {
           <label htmlFor="register-email" className="text-sm font-medium">Email</label>
           <input
             id="register-email"
+            aria-invalid={Boolean(errorMessage)}
+            aria-describedby={errorMessage ? "register-error" : undefined}
             name="email"
             autoComplete="email"
             className="w-full rounded-lg border border-red-100 p-2"
@@ -69,6 +73,8 @@ export default function RegisterPage() {
           <label htmlFor="register-password" className="text-sm font-medium">Senha</label>
           <input
             id="register-password"
+            aria-invalid={Boolean(errorMessage)}
+            aria-describedby={errorMessage ? "register-error" : undefined}
             name="password"
             autoComplete="new-password"
             className="w-full rounded-lg border border-red-100 p-2"

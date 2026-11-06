@@ -39,7 +39,7 @@ A fonte de verdade da API é o OpenAPI publicado em `/docs`.
 | RNF04 | Deploy em nuvem com Docker | ADR 0004 |
 | RNF05 | HTTPS e proxy reverso | Nginx + Let's Encrypt + Cloudflare |
 | RNF06 | Backup diário | `infra/backup.sh` + cron |
-| RNF07 | Acessibilidade WCAG 2 A/AA | Práticas + auditoria axe-core |
+| RNF07 | Acessibilidade WCAG 2 A/AA | Painel de ajustes, práticas ARIA, página `/acessibilidade` e auditoria axe-core |
 | RNF08 | Responsividade | Layout adaptável, verificado em 390 px |
 | RNF09 | Qualidade automatizada | Ruff, unittest, typecheck, build, smoke e CI |
 | RNF10 | Segurança | JWT, bcrypt, RBAC, CORS e segredos fora do repositório |
