@@ -7,6 +7,8 @@
 [![OpenAPI 3.0](https://img.shields.io/badge/API-OpenAPI%203.0-85EA2D.svg)](https://p2.carneirojunior.com.br/docs)
 [![UNIVESP](https://img.shields.io/badge/UNIVESP-PJI240-7A1FA2.svg)](https://www.univesp.br/)
 
+> Leia em inglês: [README.en.md](README.en.md)
+
 Plataforma web de delivery desenvolvida como **Projeto Integrador em Computação II (PJI240)** da
 **UNIVESP — Polo Lorena/SP**, aplicada à **açaiteria Combina Açaí**, a mesma empresa base do
 Projeto Integrador I.
