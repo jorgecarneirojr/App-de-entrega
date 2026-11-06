@@ -21,7 +21,7 @@ def get_current_user(db: Session = Depends(get_db), token: str = Depends(oauth2_
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
         user_id = int(payload.get("sub"))
     except (JWTError, TypeError, ValueError):
-        raise credentials_exception
+        raise credentials_exception from None
 
     user = db.scalar(select(User).where(User.id == user_id))
     if not user:

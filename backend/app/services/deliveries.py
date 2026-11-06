@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import HTTPException
 from sqlalchemy import select
@@ -48,9 +48,9 @@ def update_delivery_status(db: Session, delivery_id: int, payload: DeliveryStatu
 
     delivery.status = payload.status
     if payload.status == DeliveryStatus.retirado and not delivery.started_at:
-        delivery.started_at = datetime.now(timezone.utc)
+        delivery.started_at = datetime.now(UTC)
     if payload.status == DeliveryStatus.entregue:
-        delivery.delivered_at = datetime.now(timezone.utc)
+        delivery.delivered_at = datetime.now(UTC)
 
     db.commit()
     db.refresh(delivery)

@@ -2,11 +2,11 @@ from fastapi import HTTPException
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app.core.config import settings
 from app.models.enums import UserRole
 from app.models.product import Product
 from app.models.restaurant import Restaurant
 from app.models.user import User
-from app.core.config import settings
 from app.schemas.restaurant import RestaurantCreate
 from app.services.geo import geocode
 

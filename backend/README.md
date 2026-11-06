@@ -1,24 +1,45 @@
-# Backend FastAPI
+# Backend — FastAPI
 
-## Rodando local
+API REST do App de Entrega. Documentação completa em [`../docs/api-contract.md`](../docs/api-contract.md)
+e Swagger em `/docs`.
 
-1. Copie .env.example para .env
-2. Instale dependencias:
+## Requisitos
+
+- Python 3.11+
+- PostgreSQL 16 (ou Docker Compose)
+
+## Execução local
 
 ```bash
-pip install -r requirements.txt
-```
-
-3. Rode migrations:
-
-```bash
+cp .env.example .env
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements-dev.txt
 alembic upgrade head
-```
-
-4. Inicie API:
-
-```bash
 uvicorn app.main:app --reload
 ```
 
-Swagger: http://localhost:8000/docs
+## Qualidade
+
+```bash
+ruff check app tests
+python -m unittest discover -s tests -v
+```
+
+## Estrutura
+
+```text
+app/
+├── api/          # Rotas e dependências
+├── core/         # Configuração e segurança
+├── db/           # Sessão e base declarativa
+├── models/       # Entidades SQLAlchemy
+├── schemas/      # Contratos Pydantic
+└── services/     # Regras de negócio
+alembic/          # Migrations
+tests/            # Testes de API
+```
+
+## Variáveis
+
+Consulte [`../.env.deploy.example`](../.env.deploy.example) e [`../README.md`](../README.md).

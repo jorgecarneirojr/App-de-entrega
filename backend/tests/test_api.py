@@ -222,7 +222,9 @@ class DeliveryApiTestCase(unittest.TestCase):
 
         with self.SessionTesting() as db:
             delivery = db.scalar(select(Delivery).where(Delivery.id == delivery_id))
-            tracking_rows = db.scalars(select(DeliveryTracking).where(DeliveryTracking.delivery_id == delivery_id)).all()
+            tracking_rows = db.scalars(
+                select(DeliveryTracking).where(DeliveryTracking.delivery_id == delivery_id)
+            ).all()
             self.assertEqual(delivery.courier_user_id, courier_id)
             self.assertEqual(delivery.status, DeliveryStatus.retirado)
             self.assertEqual(len(tracking_rows), 1)

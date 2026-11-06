@@ -1,18 +1,37 @@
-# Frontend Next.js
+# Frontend — Next.js
 
-## Rodando local
+Interface web do App de Entrega, construída com Next.js 14, TypeScript, Tailwind CSS, React Query
+e Zustand.
 
-1. Copie .env.example para .env.local
-2. Instale dependencias:
+## Execução local
 
 ```bash
+cp .env.example .env.local
 npm install
-```
-
-3. Inicie app:
-
-```bash
 npm run dev
 ```
 
-App: http://localhost:3000
+Aplicação: http://localhost:3000
+
+## Scripts
+
+```bash
+npm run dev        # Desenvolvimento
+npm run build      # Build de produção
+npm run start      # Produção
+npm run typecheck  # TypeScript
+npm run smoke      # Smoke test
+```
+
+## Estrutura
+
+```text
+app/          # Rotas (App Router)
+components/   # Componentes e mapa
+lib/          # Cliente HTTP e tipos
+store/        # Auth e carrinho
+```
+
+## Acessibilidade
+
+Práticas e auditoria em [`../docs/accessibility.md`](../docs/accessibility.md).

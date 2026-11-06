@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "Se este software contribuir para seu trabalho, cite-o conforme abaixo."
+type: software
+title: "App de Entrega: Plataforma de Delivery para a Empresa Base Combina Açaí"
+abstract: >-
+  Plataforma web de delivery desenvolvida como Projeto Integrador em Computação II
+  (PJI240) da UNIVESP, aplicada à açaiteria Combina Açaí. Inclui cardápio digital,
+  carrinho, checkout com endereço real, mapa de rota com distância e tempo, gestão
+  de pedidos e painel do entregador.
+authors:
+  - family-names: "Pereira"
+    given-names: "Gabriel de Almeida Santos Arantes"
+  - family-names: "Carneiro Junior"
+    given-names: "Jorge Luis"
+  - family-names: "Costa"
+    given-names: "Luiz Guilherme Mariano da"
+  - family-names: "Souza"
+    given-names: "Marcos Paulo Lemos"
+  - family-names: "Geraldes"
+    given-names: "Marcos Vinicius"
+  - family-names: "Salles"
+    given-names: "Mauro C. Campos"
+  - family-names: "Freitas"
+    given-names: "Thamires Picconetto Silva"
+  - family-names: "Franca"
+    given-names: "Vanessa Cristina Batista Guimaraes"
+version: "1.1.0"
+date-released: "2026-11-06"
+license: MIT
+repository-code: "https://github.com/jorgecarneirojr/App-de-entrega"
+url: "https://p2.carneirojunior.com.br"
+keywords:
+  - delivery
+  - projeto integrador
+  - univesp
+  - fastapi
+  - nextjs
+  - postgresql
+  - openstreetmap
+  - acessibilidade

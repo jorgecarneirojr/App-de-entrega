@@ -15,3 +15,6 @@ postgres_data/
 
 # Local deploy env
 .env
+
+# TypeScript incremental build
+frontend/tsconfig.tsbuildinfo

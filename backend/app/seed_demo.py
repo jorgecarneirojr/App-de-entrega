@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from sqlalchemy import select
 
@@ -180,7 +180,7 @@ def _seed_orders(db, client: User, courier: User, restaurants: dict[str, Restaur
     if not address:
         return
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
 
     def create_order(restaurant: Restaurant, items: list[tuple[str, int]], status: OrderStatus) -> Order:
         subtotal = 0.0
