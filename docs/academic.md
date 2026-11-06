@@ -119,6 +119,7 @@ pedidos e entregas. A Tabela abaixo sintetiza a complementaridade.
 - Relatório parcial.
 - Avaliação colaborativa.
 - Ficha técnica e vídeo de apresentação: https://www.youtube.com/watch?v=ZHFJPzqw1f0.
+- Carta de Apresentação oficial da UNIVESP, com os nomes dos alunos e do responsável da empresa.
 - Termo de Autorização da Empresa e Termo de Consentimento Livre e Esclarecido.
 
 ## 11. Como citar
