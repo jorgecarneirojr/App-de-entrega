@@ -50,7 +50,8 @@ docker compose up -d --build
 
 - URL: https://p2.carneirojunior.com.br
 - Frontend e API no mesmo domínio (Nginx faz proxy de `/api/` para o backend)
-- Deploy: `docker compose -f docker-compose.deploy.yml -p pi2 up -d --build`
+- Deploy: copie `.env.deploy.example` para `.env`, ajuste as credenciais e execute `docker compose -f docker-compose.deploy.yml -p pi2 up -d --build`
+- Backup diário do banco: `infra/backup.sh` (agendado via cron)
 - A base é populada automaticamente com dados de demonstração (`SEED_DEMO_DATA=true`), incluindo 6 restaurantes, cardápios, endereço, pedidos em andamento e entregas.
 
 ### Observações importantes
