@@ -68,6 +68,10 @@ Campos: `street`, `number`, `district`, `city`, `state`, `zip_code`, `complement
 | PUT | `/products/{id}` | Atualiza produto |
 | DELETE | `/products/{id}` | Remove produto |
 
+Os produtos retornados pelo cardápio incluem `category_name` (somente leitura), permitindo
+agrupar a interface por categoria. O cardápio da empresa base é reproduzido com 33 itens em
+sete categorias.
+
 ## 4. Pedidos
 
 | Método | Rota | Descrição |

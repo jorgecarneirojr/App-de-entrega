@@ -73,7 +73,8 @@ pedidos e entregas. A Tabela abaixo sintetiza a complementaridade.
 ## 6. Resultados
 
 - Aplicação publicada em nuvem com HTTPS: https://p2.carneirojunior.com.br.
-- Seis restaurantes e cardápios de demonstração, com pedidos em diferentes estados.
+- Seis restaurantes, incluindo o cardápio real da Combina Açaí (33 itens em 7 categorias,
+  reproduzido do menu digital público da empresa) e pedidos em diferentes estados.
 - Quatro perfis de acesso com autenticação JWT.
 - Checkout com endereço real e mapa de rota (OpenStreetMap/OSRM), com distância e tempo.
 - Oito testes de API, lint com Ruff, typecheck, build e smoke test no CI.

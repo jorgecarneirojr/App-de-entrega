@@ -67,16 +67,17 @@ A plataforma possui quatro perfis:
 
 ### Contas de demonstração
 
-A base de demonstração é populada automaticamente com seis restaurantes, cardápios, endereço,
-pedidos em diferentes estados e entregas. Todas as senhas são `123456`.
+A base de demonstração é populada automaticamente com seis restaurantes, incluindo o cardápio
+real da **Combina Açaí** (33 itens em 7 categorias, reproduzido do menu digital público da
+empresa), endereço, cinco pedidos em diferentes estados e entregas. Todas as senhas são `123456`.
 
 | Perfil | E-mail | Uso principal |
 | --- | --- | --- |
 | Cliente | `client@demo.com` | Vitrine, carrinho, checkout, rota e histórico |
-| Restaurante | `owner@demo.com` | Massa Express |
+| Restaurante | `owner@demo.com` | **Açaiteria Combina Açaí** (empresa base) |
+| Restaurante | `massa@demo.com` | Massa Express |
 | Restaurante | `burger@demo.com` | Burger House |
 | Restaurante | `mineiro@demo.com` | Sabor Mineiro |
-| Restaurante | `acai@demo.com` | Açaí & Cia |
 | Restaurante | `pizza@demo.com` | Pizza Prime |
 | Restaurante | `baiano@demo.com` | Tempero Baiano |
 | Entregador | `courier@demo.com` | Entrega ativa em rota |
@@ -127,6 +128,10 @@ pedidos em diferentes estados e entregas. Todas as senhas são `123456`.
 | Painel do restaurante | Painel do entregador |
 | --- | --- |
 | ![Painel do restaurante](docs/images/owner-panel.png) | ![Painel do entregador](docs/images/courier-panel.png) |
+
+| Cardápio real da empresa base |
+| --- |
+| ![Cardápio da Combina Açaí](docs/images/menu.png) |
 
 ---
 
@@ -249,7 +254,7 @@ Detalhes e checklist em [`docs/accessibility.md`](docs/accessibility.md).
 | Verificação | Ferramenta | Escopo |
 | --- | --- | --- |
 | Lint do backend | Ruff | Importação, erros, modernização e boas práticas |
-| Testes de API | unittest | 8 cenários de autenticação, pedidos, entregas, coordenadas e rotas |
+| Testes de API | unittest | 9 cenários de autenticação, pedidos, entregas, coordenadas, rotas e cardápio |
 | Typecheck | TypeScript | Todo o front-end |
 | Build | Next.js | Build de produção |
 | Smoke test | Script + HTTP | Páginas principais |

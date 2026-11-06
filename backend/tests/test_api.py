@@ -15,6 +15,7 @@ from app.api.deps import get_db
 from app.core.security import get_password_hash
 from app.db.base import Base
 from app.main import app
+from app.models.category import Category
 from app.models.delivery import Delivery, DeliveryTracking
 from app.models.enums import DeliveryStatus, UserRole
 from app.models.product import Product
@@ -320,7 +321,6 @@ class DeliveryApiTestCase(unittest.TestCase):
         )
         self.assertEqual(invalid_lng_response.status_code, 422)
 
-
     def test_address_keeps_explicit_coordinates(self):
         self._register(name="Cliente Geo", email="cliente@geo.com", role="cliente")
         token = self._login(email="cliente@geo.com")
@@ -370,3 +370,21 @@ class DeliveryApiTestCase(unittest.TestCase):
             params={"from_lat": 120, "from_lon": -45, "to_lat": -22, "to_lon": -45},
         )
         self.assertEqual(response.status_code, 422)
+
+    def test_menu_returns_category_name(self):
+        bundle = self._create_restaurant_bundle()
+        with self.SessionTesting() as db:
+            category = Category(
+                restaurant_id=bundle["restaurant_id"],
+                name="Açaí Tradicional",
+                display_order=1,
+            )
+            db.add(category)
+            db.flush()
+            product = db.get(Product, bundle["product_id"])
+            product.category_id = category.id
+            db.commit()
+
+        response = self.client.get(f"/api/v1/restaurants/{bundle['restaurant_id']}/menu")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()[0]["category_name"], "Açaí Tradicional")

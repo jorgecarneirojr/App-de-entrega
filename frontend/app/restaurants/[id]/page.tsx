@@ -32,6 +32,17 @@ export default function RestaurantMenuPage() {
     return { itemCount, subtotal };
   }, [items]);
 
+  const groupedProducts = useMemo(() => {
+    const groups = new Map<string, Product[]>();
+    for (const product of data ?? []) {
+      const category = product.category_name ?? "Outros";
+      const items = groups.get(category) ?? [];
+      items.push(product);
+      groups.set(category, items);
+    }
+    return Array.from(groups.entries());
+  }, [data]);
+
   return (
     <main>
       <Header />
@@ -51,37 +62,50 @@ export default function RestaurantMenuPage() {
           {isLoading && <div className="card">Carregando...</div>}
           {error && <div className="card text-red-700">{getErrorMessage(error, "Nao foi possivel carregar o cardapio.")}</div>}
 
-          <div className="grid gap-3">
-            {data?.map((product) => {
-              const quantityInCart = items.find((item) => item.product_id === product.id)?.quantity ?? 0;
+          <div className="space-y-7">
+            {groupedProducts.map(([category, products], groupIndex) => (
+              <section key={category} aria-labelledby={`categoria-${groupIndex}`}>
+                <h2 id={`categoria-${groupIndex}`} className="mb-3 text-xl font-black text-red-700">
+                  {category}
+                </h2>
+                <div className="grid gap-3">
+                  {products.map((product) => {
+                    const quantityInCart = items.find((item) => item.product_id === product.id)?.quantity ?? 0;
 
-              return (
-                <article key={product.id} className="card flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                  <div className="space-y-2">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h2 className="font-bold">{product.name}</h2>
-                      {quantityInCart > 0 && <span className="badge border-0 bg-emerald-100 text-emerald-700">{quantityInCart} no carrinho</span>}
-                    </div>
-                    <p className="text-sm text-slate-600">{product.description ?? "Sem descricao"}</p>
-                    <p className="font-semibold text-red-700">R$ {Number(product.price).toFixed(2)}</p>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn-primary"
-                    aria-label={`Adicionar ${product.name} ao carrinho`}
-                    onClick={() =>
-                      addItem(restaurantId, {
-                        product_id: product.id,
-                        name: product.name,
-                        price: Number(product.price)
-                      })
-                    }
-                  >
-                    Adicionar
-                  </button>
-                </article>
-              );
-            })}
+                    return (
+                      <article key={product.id} className="card flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                        <div className="space-y-2">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h3 className="font-bold">{product.name}</h3>
+                            {quantityInCart > 0 && (
+                              <span className="badge border-0 bg-emerald-100 text-emerald-700">
+                                {quantityInCart} no carrinho
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm text-slate-600">{product.description ?? "Sem descricao"}</p>
+                          <p className="font-semibold text-red-700">R$ {Number(product.price).toFixed(2)}</p>
+                        </div>
+                        <button
+                          type="button"
+                          className="btn-primary"
+                          aria-label={`Adicionar ${product.name} ao carrinho`}
+                          onClick={() =>
+                            addItem(restaurantId, {
+                              product_id: product.id,
+                              name: product.name,
+                              price: Number(product.price)
+                            })
+                          }
+                        >
+                          Adicionar
+                        </button>
+                      </article>
+                    );
+                  })}
+                </div>
+              </section>
+            ))}
           </div>
         </div>
 

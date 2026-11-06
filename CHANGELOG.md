@@ -19,11 +19,12 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Adicionado
 
+- Cardápio real da Combina Açaí (33 itens em 7 categorias) e agrupamento por categoria na interface.
 - Mapa de rota com Leaflet/OpenStreetMap, distância e tempo via OSRM.
 - Geocodificação de endereços e restaurantes com Nominatim.
 - Cache de geocodificação (24 h) e rotas (5 min) e fallback geodésico.
 - Migração `0002_geo_coordinates`.
-- Testes de coordenadas e rota.
+- Testes de coordenadas, rota e categorias do cardápio.
 - Documentação de arquitetura, modelo de dados, testes, acessibilidade, segurança, deploy e ADRs.
 - Templates de issue/PR, política de segurança, código de conduta e citação.
 - Lint com Ruff, typecheck no CI e `requirements-dev.txt`.

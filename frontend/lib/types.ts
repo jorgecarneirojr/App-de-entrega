@@ -39,6 +39,7 @@ export type Product = {
   id: number;
   restaurant_id: number;
   category_id: number | null;
+  category_name: string | null;
   name: string;
   description: string | null;
   price: number;

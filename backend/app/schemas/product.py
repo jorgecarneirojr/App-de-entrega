@@ -24,6 +24,7 @@ class ProductOut(BaseModel):
     id: int
     restaurant_id: int
     category_id: int | None
+    category_name: str | None = None
     name: str
     description: str | None
     price: float

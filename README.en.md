@@ -28,7 +28,8 @@ management and a courier dashboard.
 ## Features
 
 - JWT authentication and role-based access (`customer`, `restaurant`, `courier`, `admin`).
-- Restaurant catalog and digital menu.
+- Restaurant catalog and digital menu, including the base company menu reproduced from its
+  public digital menu (33 items across 7 categories).
 - Persistent cart and checkout with a real address.
 - Address geocoding and route map with distance/time (OpenStreetMap, Nominatim, OSRM).
 - Customer order history.
@@ -80,12 +81,13 @@ Demo accounts (password `123456`):
 | Role | E-mail |
 | --- | --- |
 | Customer | `client@demo.com` |
-| Restaurant | `owner@demo.com` |
+| Restaurant (base company) | `owner@demo.com` |
+| Restaurant | `massa@demo.com` |
 | Courier | `courier@demo.com` |
 
 ## Quality
 
-- 8 API tests with `unittest`.
+- 9 API tests with `unittest`.
 - Backend lint with Ruff.
 - Front-end typecheck, production build and smoke test.
 - CI on every push and pull request.

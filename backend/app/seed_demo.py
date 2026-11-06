@@ -5,6 +5,7 @@ from sqlalchemy import select
 from app.core.security import get_password_hash
 from app.db.session import SessionLocal
 from app.models.address import Address
+from app.models.category import Category
 from app.models.delivery import Delivery, DeliveryTracking
 from app.models.enums import DeliveryStatus, OrderStatus, UserRole
 from app.models.order import Order, OrderItem
@@ -17,6 +18,111 @@ DEMO_PASSWORD = "123456"
 RESTAURANTS = [
     {
         "owner_email": "owner@demo.com",
+        "owner_name": "Açaiteria Combina Açaí",
+        "name": "Combina Açaí",
+        "address": "Rua Tenente Manoel Barbosa, 46, Bairro da Cruz, Lorena/SP",
+        "latitude": -22.7406991,
+        "longitude": -45.1041195,
+        "description": "Açaí cremoso, gelatos artesanais, bowls e vitaminas preparados em Lorena/SP.",
+        "delivery_fee": 4.5,
+        "avg_delivery_time_min": 25,
+        "categories": [
+            "Açaí 70% Tradicional",
+            "Açaí Tradicional Premium 90%",
+            "Açaí Grego",
+            "Açaí Zero",
+            "Combo Box 1l",
+            "Gelato Pitaya",
+            "Gelato Cappuccino",
+        ],
+        "products": [
+            (
+                "70% Tradicional 330ml",
+                13.0,
+                "Açaí tradicional com aquele gostinho de infância, livre de cristais de gelo.",
+                "Açaí 70% Tradicional",
+            ),
+            (
+                "70% Tradicional 440ml",
+                15.0,
+                "Açaí tradicional com aquele gostinho de infância, livre de cristais de gelo.",
+                "Açaí 70% Tradicional",
+            ),
+            (
+                "70% Tradicional 550ml",
+                17.0,
+                "Açaí tradicional com aquele gostinho de infância, livre de cristais de gelo.",
+                "Açaí 70% Tradicional",
+            ),
+            (
+                "70% Tradicional 770ml",
+                21.0,
+                "Atenção: indicado 2x de complemento. Açaí tradicional livre de cristais de gelo.",
+                "Açaí 70% Tradicional",
+            ),
+            ("70% Açaí Tradicional Box 1l", 27.9, "Box de 1l tradicional 70% puro.", "Açaí 70% Tradicional"),
+            (
+                "90% Premium Tradicional 330ml",
+                15.0,
+                "Açaí premium orgânico, consistente e livre de cristais de gelo.",
+                "Açaí Tradicional Premium 90%",
+            ),
+            (
+                "90% Premium Tradicional 440ml",
+                17.0,
+                "Açaí premium orgânico, consistente e livre de cristais de gelo.",
+                "Açaí Tradicional Premium 90%",
+            ),
+            (
+                "90% Premium Tradicional 550ml",
+                19.0,
+                "Açaí premium orgânico, consistente e livre de cristais de gelo.",
+                "Açaí Tradicional Premium 90%",
+            ),
+            (
+                "90% Premium Tradicional 770ml",
+                23.9,
+                "Atenção: indicado colocar 2x de complemento para ir mais recheado.",
+                "Açaí Tradicional Premium 90%",
+            ),
+            (
+                "90% Premium Açaí Tradicional Box 1l",
+                36.0,
+                "Box de 1l tradicional 90% Premium puro.",
+                "Açaí Tradicional Premium 90%",
+            ),
+            ("Açaí Grego Copo 330ml", 15.0, "Açaí com iogurte grego puro.", "Açaí Grego"),
+            ("Açaí Grego Copo 440ml", 17.0, "Açaí com iogurte grego puro.", "Açaí Grego"),
+            ("Açaí Grego Copo 550ml", 19.0, "Açaí com iogurte grego puro.", "Açaí Grego"),
+            ("Açaí Grego Copo 770ml", 23.9, "Atenção: indicado 2x de complemento para ir bem recheado.", "Açaí Grego"),
+            ("Açaí Grego Box 1l", 36.0, "Box de 1l grego puro (complementos à parte).", "Açaí Grego"),
+            ("Açaí Zero Copo 330ml", 19.0, "Açaí 100% orgânico sem açúcar.", "Açaí Zero"),
+            ("Açaí Zero Copo 440ml", 22.0, "Açaí 100% orgânico sem açúcar.", "Açaí Zero"),
+            ("Açaí Zero Copo 550ml", 25.0, "Açaí 100% orgânico sem açúcar.", "Açaí Zero"),
+            ("Açaí Zero Copo 770ml", 29.0, "Açaí 100% orgânico sem açúcar.", "Açaí Zero"),
+            ("Açaí Zero Box 1l", 45.0, "Box de 1l puro, sem açúcar.", "Açaí Zero"),
+            ("90% Box Tradicional + 4 Complementos", 41.9, "Açaí 90% com 4 complementos à escolha.", "Combo Box 1l"),
+            ("Box Grego + 4 Complementos", 41.9, "Box grego com 4 complementos à escolha.", "Combo Box 1l"),
+            ("Box 70% Tradicional + 4 Complementos", 37.9, "Box 70% com 4 complementos à escolha.", "Combo Box 1l"),
+            ("Gelato Pitaya Copo 330ml", 16.0, "Gelato à base de água e pitaya orgânica.", "Gelato Pitaya"),
+            ("Gelato Pitaya Copo 440ml", 19.0, "Gelato refrescante de pitaya, à base de água.", "Gelato Pitaya"),
+            ("Pitaya Copo 550ml", 21.0, "Gelato de pitaya à base de água e fruta orgânica.", "Gelato Pitaya"),
+            ("Pitaya Copo 770ml", 26.9, "Gelato de pitaya; recomendado o dobro de complemento.", "Gelato Pitaya"),
+            ("Pitaya Box 1l", 38.0, "Box de 1l puro.", "Gelato Pitaya"),
+            ("Gelato Cappuccino Copo 330ml", 16.0, "Gelato à base de café e leite.", "Gelato Cappuccino"),
+            ("Gelato Cappuccino Copo 440ml", 19.0, "Gelato à base de café e leite.", "Gelato Cappuccino"),
+            ("Cappuccino Copo 550ml", 21.0, "Gelato à base de café e leite.", "Gelato Cappuccino"),
+            (
+                "Cappuccino Copo 770ml",
+                26.9,
+                "Gelato de café; no copo de 770ml recomenda-se o dobro de complemento.",
+                "Gelato Cappuccino",
+            ),
+            ("Cappuccino Box 1l", 38.0, "Box de 1l puro.", "Gelato Cappuccino"),
+        ],
+    },
+    {
+        "owner_email": "massa@demo.com",
         "owner_name": "Massa Express",
         "name": "Massa Express",
         "address": "Rua Comendador Custodio Vieira, 120, Centro, Lorena/SP",
@@ -65,23 +171,6 @@ RESTAURANTS = [
             ("Frango com Quiabo", 34.9, "Frango caipira cozido lentamente com quiabo e angu."),
             ("Tutu a Mineira", 28.9, "Tutu de feijao com lombo, couve e arroz."),
             ("Doce de Leite Caseiro", 12.9, "Pote de 250g produzido na regiao."),
-        ],
-    },
-    {
-        "owner_email": "acai@demo.com",
-        "owner_name": "Açaí & Cia",
-        "name": "Açaí & Cia",
-        "address": "Rua Capitao Messias Ribeiro, 300, Bairro da Cruz, Lorena/SP",
-        "latitude": -22.7295,
-        "longitude": -45.1275,
-        "description": "Açaí cremoso, bowls, vitaminas e complementos frescos.",
-        "delivery_fee": 3.5,
-        "avg_delivery_time_min": 20,
-        "products": [
-            ("Açaí 300ml", 17.9, "Acompanha banana, granola e leite condensado."),
-            ("Açaí 500ml", 23.9, "Com morango, granola e mel."),
-            ("Bowl Tropical", 27.9, "Açaí, manga, kiwi, coco e granola."),
-            ("Vitamina de Açaí", 15.9, "400ml batida com banana e leite."),
         ],
     },
     {
@@ -154,22 +243,59 @@ def _get_or_create_restaurant(db, data: dict, owner: User) -> Restaurant:
     return restaurant
 
 
-def _seed_products(db, restaurant: Restaurant, products: list[tuple[str, float, str]]) -> None:
-    existing = {
-        name
-        for (name,) in db.execute(select(Product.name).where(Product.restaurant_id == restaurant.id))
-    }
-    for name, price, description in products:
-        if name not in existing:
-            db.add(
-                Product(
-                    restaurant_id=restaurant.id,
-                    name=name,
-                    description=description,
-                    price=price,
-                    is_available=True,
-                )
+def _seed_products(
+    db,
+    restaurant: Restaurant,
+    products: list[tuple[str, float, str] | tuple[str, float, str, str]],
+    categories: list[str] | None = None,
+) -> None:
+    category_ids: dict[str, int] = {}
+    for order, category_name in enumerate(categories or [], start=1):
+        category = db.scalar(
+            select(Category).where(
+                Category.restaurant_id == restaurant.id,
+                Category.name == category_name,
             )
+        )
+        if not category:
+            category = Category(
+                restaurant_id=restaurant.id,
+                name=category_name,
+                display_order=order,
+            )
+            db.add(category)
+            db.flush()
+        category_ids[category_name] = category.id
+
+    for item in products:
+        if len(item) == 4:
+            name, price, description, category_name = item
+        else:
+            name, price, description = item
+            category_name = None
+
+        product = db.scalar(
+            select(Product).where(
+                Product.restaurant_id == restaurant.id,
+                Product.name == name,
+            )
+        )
+        category_id = category_ids.get(category_name) if category_name else None
+        if product:
+            if product.category_id is None and category_id:
+                product.category_id = category_id
+            continue
+
+        db.add(
+            Product(
+                restaurant_id=restaurant.id,
+                category_id=category_id,
+                name=name,
+                description=description,
+                price=price,
+                is_available=True,
+            )
+        )
 
 
 def _seed_orders(db, client: User, courier: User, restaurants: dict[str, Restaurant]) -> None:
@@ -221,29 +347,45 @@ def _seed_orders(db, client: User, courier: User, restaurants: dict[str, Restaur
             )
         return order
 
-    delivered = create_order(
+    def add_delivery(order: Order, status: DeliveryStatus, minutes_ago: int, delivered: bool = False) -> None:
+        delivery = Delivery(
+            order_id=order.id,
+            courier_user_id=courier.id,
+            status=status,
+            started_at=now - timedelta(minutes=minutes_ago + 15),
+            delivered_at=now - timedelta(minutes=minutes_ago) if delivered else None,
+        )
+        db.add(delivery)
+        db.flush()
+        db.add(
+            DeliveryTracking(
+                delivery_id=delivery.id,
+                latitude=-22.7312,
+                longitude=-45.1248,
+                status=status.value,
+                recorded_at=now - timedelta(minutes=minutes_ago),
+            )
+        )
+
+    combina_delivered = create_order(
+        restaurants["Combina Açaí"],
+        [("90% Premium Tradicional 550ml", 1), ("Açaí Grego Copo 550ml", 1)],
+        OrderStatus.entregue,
+    )
+    add_delivery(combina_delivered, DeliveryStatus.entregue, 90, delivered=True)
+
+    create_order(
+        restaurants["Combina Açaí"],
+        [("70% Tradicional 770ml", 2), ("Açaí Zero Copo 550ml", 1)],
+        OrderStatus.em_preparo,
+    )
+
+    massa_delivered = create_order(
         restaurants["Massa Express"],
         [("Lasanha Bolonhesa", 1), ("Hamburguer Artesanal", 1)],
         OrderStatus.entregue,
     )
-    delivered_delivery = Delivery(
-        order_id=delivered.id,
-        courier_user_id=courier.id,
-        status=DeliveryStatus.entregue,
-        started_at=now - timedelta(days=2, minutes=40),
-        delivered_at=now - timedelta(days=2, minutes=10),
-    )
-    db.add(delivered_delivery)
-    db.flush()
-    db.add(
-        DeliveryTracking(
-            delivery_id=delivered_delivery.id,
-            latitude=-23.55052,
-            longitude=-46.633308,
-            status=DeliveryStatus.entregue.value,
-            recorded_at=now - timedelta(days=2, minutes=10),
-        )
-    )
+    add_delivery(massa_delivered, DeliveryStatus.entregue, 150, delivered=True)
 
     create_order(
         restaurants["Burger House"],
@@ -256,23 +398,7 @@ def _seed_orders(db, client: User, courier: User, restaurants: dict[str, Restaur
         [("Frango com Quiabo", 1), ("Doce de Leite Caseiro", 1)],
         OrderStatus.saiu_entrega,
     )
-    on_route_delivery = Delivery(
-        order_id=on_route.id,
-        courier_user_id=courier.id,
-        status=DeliveryStatus.em_rota,
-        started_at=now - timedelta(minutes=18),
-    )
-    db.add(on_route_delivery)
-    db.flush()
-    db.add(
-        DeliveryTracking(
-            delivery_id=on_route_delivery.id,
-            latitude=-23.561414,
-            longitude=-46.655881,
-            status=DeliveryStatus.em_rota.value,
-            recorded_at=now - timedelta(minutes=5),
-        )
-    )
+    add_delivery(on_route, DeliveryStatus.em_rota, 5)
 
 
 def seed_demo_data() -> None:
@@ -291,7 +417,7 @@ def seed_demo_data() -> None:
                 role=UserRole.dono_restaurante,
             )
             restaurant = _get_or_create_restaurant(db, data, owner)
-            _seed_products(db, restaurant, data["products"])
+            _seed_products(db, restaurant, data["products"], data.get("categories"))
             restaurants[restaurant.name] = restaurant
         db.flush()
 

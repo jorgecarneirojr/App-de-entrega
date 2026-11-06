@@ -3,6 +3,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
+from app.models.category import Category
 from app.models.enums import UserRole
 from app.models.product import Product
 from app.models.restaurant import Restaurant
@@ -23,9 +24,17 @@ def get_restaurant_or_404(db: Session, restaurant_id: int) -> Restaurant:
 
 
 def list_restaurant_menu(db: Session, restaurant_id: int) -> list[Product]:
-    return db.scalars(
-        select(Product).where(Product.restaurant_id == restaurant_id, Product.is_available.is_(True))
+    rows = db.execute(
+        select(Product, Category.name, Category.display_order)
+        .outerjoin(Category, Product.category_id == Category.id)
+        .where(Product.restaurant_id == restaurant_id, Product.is_available.is_(True))
+        .order_by(Category.display_order.asc(), Product.id.asc())
     ).all()
+    products = []
+    for product, category_name, _ in rows:
+        product.category_name = category_name
+        products.append(product)
+    return products
 
 
 def list_owner_restaurants(db: Session, user: User) -> list[Restaurant]:

@@ -29,6 +29,7 @@ e detectar regressões antes da publicação.
 | 6 | Persistência de coordenadas explícitas | API | Latitude/longitude retornadas no endereço |
 | 7 | Rota com distância e geometria | API | `distance_km`, `duration_min` e `geometry` |
 | 8 | Coordenadas inválidas na rota | API | `422` |
+| 9 | Cardápio retorna `category_name` | API | Produto agrupado por categoria |
 
 Além dos testes, o front-end passa por `npm run typecheck`, `npm run build` e `npm run smoke`.
 
@@ -52,7 +53,7 @@ npm run smoke
 O workflow [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) executa em cada push e pull
 request para `main`:
 
-1. **Backend:** instala dependências, roda Ruff e os 8 testes de API.
+1. **Backend:** instala dependências, roda Ruff e os 9 testes de API.
 2. **Frontend:** instala com `npm ci`, roda typecheck, build e smoke test.
 
 O CI usa cache de dependências e cancela execuções antigas do mesmo branch.
