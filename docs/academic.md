@@ -117,7 +117,7 @@ pedidos e entregas. A Tabela abaixo sintetiza a complementaridade.
 - Plano de ação.
 - Relatório parcial.
 - Avaliação colaborativa.
-- Ficha técnica e vídeo de apresentação.
+- Ficha técnica e vídeo de apresentação: https://www.youtube.com/watch?v=ZHFJPzqw1f0.
 - Termo de Autorização da Empresa e Termo de Consentimento Livre e Esclarecido.
 
 ## 11. Como citar

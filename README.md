@@ -6,6 +6,7 @@
 [![Node.js 20](https://img.shields.io/badge/node.js-20-339933.svg)](https://nodejs.org/)
 [![OpenAPI 3.0](https://img.shields.io/badge/API-OpenAPI%203.0-85EA2D.svg)](https://p2.carneirojunior.com.br/docs)
 [![UNIVESP](https://img.shields.io/badge/UNIVESP-PJI240-7A1FA2.svg)](https://www.univesp.br/)
+[![YouTube](https://img.shields.io/badge/YouTube-apresenta%C3%A7%C3%A3o-red.svg)](https://www.youtube.com/watch?v=ZHFJPzqw1f0)
 
 > Leia em inglês: [README.en.md](README.en.md)
 
@@ -20,6 +21,7 @@ restaurante e painel do entregador.
 
 > **Aplicação publicada:** https://p2.carneirojunior.com.br  
 > **Documentação da API:** https://p2.carneirojunior.com.br/docs  
+> **Vídeo de apresentação:** https://www.youtube.com/watch?v=ZHFJPzqw1f0  
 > **Repositório:** https://github.com/jorgecarneirojr/App-de-entrega
 
 ---

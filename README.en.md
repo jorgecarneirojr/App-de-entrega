@@ -5,6 +5,7 @@
 [![Python 3.11](https://img.shields.io/badge/python-3.11-3776AB.svg)](https://www.python.org/)
 [![Node.js 20](https://img.shields.io/badge/node.js-20-339933.svg)](https://nodejs.org/)
 [![OpenAPI 3.0](https://img.shields.io/badge/API-OpenAPI%203.0-85EA2D.svg)](https://p2.carneirojunior.com.br/docs)
+[![YouTube](https://img.shields.io/badge/YouTube-presentation-red.svg)](https://www.youtube.com/watch?v=ZHFJPzqw1f0)
 
 > Read this in Portuguese: [README.md](README.md)
 
@@ -21,6 +22,7 @@ management and a courier dashboard.
 
 - **App:** https://p2.carneirojunior.com.br
 - **API docs:** https://p2.carneirojunior.com.br/docs
+- **Presentation video:** https://www.youtube.com/watch?v=ZHFJPzqw1f0
 - **Repository:** https://github.com/jorgecarneirojr/App-de-entrega
 
 ## Features
