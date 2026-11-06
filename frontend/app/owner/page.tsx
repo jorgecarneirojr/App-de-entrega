@@ -12,6 +12,7 @@ import { useAuthStore } from "@/store/auth";
 const emptyRestaurant = {
   name: "",
   description: "",
+  address: "",
   delivery_fee: "6.5",
   avg_delivery_time_min: "35"
 };
@@ -91,6 +92,7 @@ export default function OwnerPage() {
       await api.post("/restaurants", {
         name: restaurantForm.name,
         description: restaurantForm.description || null,
+        address: restaurantForm.address || null,
         delivery_fee: Number(restaurantForm.delivery_fee),
         avg_delivery_time_min: Number(restaurantForm.avg_delivery_time_min)
       });
@@ -211,6 +213,7 @@ export default function OwnerPage() {
             <h2 className="text-xl font-black text-red-700">Onboarding do restaurante</h2>
             <input aria-label="Nome do restaurante" className="w-full rounded-lg border border-red-100 p-2" placeholder="Nome" value={restaurantForm.name} onChange={(e) => setRestaurantForm((current) => ({ ...current, name: e.target.value }))} required />
             <textarea aria-label="Descricao do restaurante" className="w-full rounded-lg border border-red-100 p-2" placeholder="Descricao" value={restaurantForm.description} onChange={(e) => setRestaurantForm((current) => ({ ...current, description: e.target.value }))} />
+            <input aria-label="Endereco do restaurante" className="w-full rounded-lg border border-red-100 p-2" placeholder="Endereco completo (rua, numero, cidade)" value={restaurantForm.address} onChange={(e) => setRestaurantForm((current) => ({ ...current, address: e.target.value }))} />
             <input aria-label="Taxa de entrega" className="w-full rounded-lg border border-red-100 p-2" type="number" step="0.01" placeholder="Taxa de entrega" value={restaurantForm.delivery_fee} onChange={(e) => setRestaurantForm((current) => ({ ...current, delivery_fee: e.target.value }))} required />
             <input aria-label="Tempo medio de entrega em minutos" className="w-full rounded-lg border border-red-100 p-2" type="number" placeholder="Tempo medio de entrega" value={restaurantForm.avg_delivery_time_min} onChange={(e) => setRestaurantForm((current) => ({ ...current, avg_delivery_time_min: e.target.value }))} required />
             <button className="btn-primary" type="submit">Criar restaurante</button>

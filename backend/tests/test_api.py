@@ -2,8 +2,10 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 os.environ.setdefault("DATABASE_URL", "sqlite:///./placeholder.db")
+os.environ.setdefault("GEOCODING_ENABLED", "false")
 
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, select
@@ -315,3 +317,54 @@ class DeliveryApiTestCase(unittest.TestCase):
             headers=self._auth_headers(courier_token),
         )
         self.assertEqual(invalid_lng_response.status_code, 422)
+
+
+    def test_address_keeps_explicit_coordinates(self):
+        self._register(name="Cliente Geo", email="cliente@geo.com", role="cliente")
+        token = self._login(email="cliente@geo.com")
+
+        response = self.client.post(
+            "/api/v1/addresses",
+            json={
+                "street": "Rua das Flores",
+                "number": "123",
+                "district": "Centro",
+                "city": "Lorena",
+                "state": "SP",
+                "zip_code": "12600-000",
+                "latitude": -22.7312,
+                "longitude": -45.1248,
+            },
+            headers=self._auth_headers(token),
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertAlmostEqual(response.json()["latitude"], -22.7312, places=4)
+        self.assertAlmostEqual(response.json()["longitude"], -45.1248, places=4)
+
+    def test_geo_route_returns_distance_and_geometry(self):
+        payload = {
+            "distance_km": 2.4,
+            "duration_min": 8,
+            "geometry": [[-22.7305, -45.1235], [-22.7312, -45.1248]],
+            "source": "osrm",
+        }
+        with patch("app.api.v1.routes.geo.route_distance", return_value=payload):
+            response = self.client.get(
+                "/api/v1/geo/route",
+                params={
+                    "from_lat": -22.7305,
+                    "from_lon": -45.1235,
+                    "to_lat": -22.7312,
+                    "to_lon": -45.1248,
+                },
+            )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["distance_km"], 2.4)
+        self.assertEqual(len(response.json()["geometry"]), 2)
+
+    def test_geo_route_validates_coordinates(self):
+        response = self.client.get(
+            "/api/v1/geo/route",
+            params={"from_lat": 120, "from_lon": -45, "to_lat": -22, "to_lon": -45},
+        )
+        self.assertEqual(response.status_code, 422)

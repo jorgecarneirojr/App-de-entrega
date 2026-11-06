@@ -18,6 +18,8 @@ export type Address = {
   zip_code: string;
   complement: string | null;
   reference: string | null;
+  latitude: number | null;
+  longitude: number | null;
 };
 
 export type AddressPayload = Omit<Address, "id" | "user_id">;
@@ -26,6 +28,9 @@ export type Restaurant = {
   id: number;
   name: string;
   description: string | null;
+  address: string | null;
+  latitude: number | null;
+  longitude: number | null;
   delivery_fee: number;
   avg_delivery_time_min: number;
 };
@@ -61,4 +66,11 @@ export type Order = {
   total: number;
   notes: string | null;
   created_at: string;
+};
+
+export type RouteInfo = {
+  distance_km: number;
+  duration_min: number;
+  geometry: [number, number][];
+  source: "osrm" | "estimado";
 };

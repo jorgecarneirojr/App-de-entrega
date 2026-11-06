@@ -6,7 +6,9 @@ from app.models.enums import UserRole
 from app.models.product import Product
 from app.models.restaurant import Restaurant
 from app.models.user import User
+from app.core.config import settings
 from app.schemas.restaurant import RestaurantCreate
+from app.services.geo import geocode
 
 
 def list_active_restaurants(db: Session) -> list[Restaurant]:
@@ -34,7 +36,17 @@ def list_owner_restaurants(db: Session, user: User) -> list[Restaurant]:
 
 def create_restaurant(db: Session, user: User, payload: RestaurantCreate) -> Restaurant:
     owner_user_id = user.id
-    restaurant = Restaurant(owner_user_id=owner_user_id, **payload.model_dump())
+    values = payload.model_dump()
+    restaurant = Restaurant(owner_user_id=owner_user_id, **values)
+    if (
+        settings.GEOCODING_ENABLED
+        and restaurant.address
+        and (restaurant.latitude is None or restaurant.longitude is None)
+    ):
+        result = geocode(f"{restaurant.address}, Brasil")
+        if result:
+            restaurant.latitude = result["latitude"]
+            restaurant.longitude = result["longitude"]
     db.add(restaurant)
     db.commit()
     db.refresh(restaurant)

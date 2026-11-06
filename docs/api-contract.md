@@ -16,6 +16,8 @@
 - POST /api/v1/addresses
 - PUT /api/v1/addresses/{id}
 - DELETE /api/v1/addresses/{id}
+- Campos `latitude` e `longitude` sao opcionais; quando ausentes, o backend
+  tenta geocodificar o endereco via Nominatim.
 
 ## Restaurantes e cardapio
 
@@ -44,6 +46,13 @@
 - PATCH /api/v1/orders/{id}/status
 - PATCH /api/v1/orders/{id}/assign-courier
 - `POST /api/v1/orders` retorna `404` quando algum `product_id` informado nao existe.
+
+## Geolocalizacao
+
+- GET /api/v1/geo/geocode?q={endereco}
+- GET /api/v1/geo/route?from_lat=&from_lon=&to_lat=&to_lon=
+- `GET /api/v1/geo/route` retorna `distance_km`, `duration_min`, `geometry`
+  (lista de `[lat, lon]`) e `source` (`osrm` ou `estimado`).
 
 ## Entregador
 

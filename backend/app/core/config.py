@@ -9,6 +9,9 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "postgresql+psycopg2://postgres:postgres@localhost:5432/delivery_db"
     BACKEND_CORS_ORIGINS: str = "http://localhost:3000,http://localhost"
     SEED_DEMO_DATA: bool = False
+    GEOCODING_ENABLED: bool = True
+    GEOCODING_USER_AGENT: str = "AppDeEntregaPI2/1.0 (UNIVESP Projeto Integrador; jorgeluis.unesp@gmail.com)"
+    GEOCODING_TIMEOUT_SECONDS: float = 6.0
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

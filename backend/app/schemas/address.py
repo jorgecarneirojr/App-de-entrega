@@ -10,6 +10,8 @@ class AddressBase(BaseModel):
     zip_code: str
     complement: str | None = None
     reference: str | None = None
+    latitude: float | None = None
+    longitude: float | None = None
 
 
 class AddressCreate(AddressBase):
@@ -25,6 +27,8 @@ class AddressUpdate(BaseModel):
     zip_code: str | None = None
     complement: str | None = None
     reference: str | None = None
+    latitude: float | None = None
+    longitude: float | None = None
 
 
 class AddressOut(AddressBase):

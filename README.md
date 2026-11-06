@@ -2,7 +2,7 @@
 
 Aplicação de delivery inspirada em plataformas como iFood, com fluxo completo para **cliente**, **restaurante**, **entregador** e **admin**.
 
-> Status atual: vitrine de restaurantes, carrinho local, checkout com endereço real, histórico de pedidos e acompanhamento básico de entregas.
+> Status atual: vitrine de restaurantes, carrinho local, checkout com endereço real e mapa de rota, histórico de pedidos e acompanhamento básico de entregas.
 
 ## ✨ Destaques
 
@@ -11,6 +11,7 @@ Aplicação de delivery inspirada em plataformas como iFood, com fluxo completo 
 - 🛒 Carrinho persistido no navegador
 - 📦 Pedido com endereço real salvo na conta
 - 🛵 Atribuição de entregador, atualização de status e localização
+- 🗺️ Mapa de rota com distância e tempo entre a loja e o endereço de entrega
 - 🧪 Testes de API + smoke test do frontend no CI
 
 ## 🧱 Stack
@@ -20,6 +21,7 @@ Aplicação de delivery inspirada em plataformas como iFood, com fluxo completo 
 | Frontend | Next.js, TypeScript, Tailwind CSS, React Query, Zustand |
 | Backend | FastAPI, SQLAlchemy, Alembic, JWT |
 | Banco | PostgreSQL |
+| Geolocalização | Leaflet, OpenStreetMap, Nominatim e OSRM |
 | Infra | Docker Compose, Nginx |
 
 ## 🗂️ Estrutura do projeto
@@ -82,6 +84,7 @@ docker compose up -d --build
 - Onboarding básico de restaurante
 - CRUD de produtos
 - Carrinho local persistido no navegador
+- Mapa de rota com distância/tempo da loja até o endereço de entrega
 - Criação de pedido com endereço real
 - Histórico de pedidos por perfil
 - Vínculo de entregador ao pedido
@@ -113,6 +116,8 @@ docker compose up -d --build
 - `PATCH /api/v1/deliveries/{id}/status`
 - `POST /api/v1/deliveries/{id}/location`
 - `GET /api/v1/deliveries/me/active`
+- `GET /api/v1/geo/geocode?q=...`
+- `GET /api/v1/geo/route?from_lat=...&from_lon=...&to_lat=...&to_lon=...`
 
 ## 🧪 Testes e validação
 

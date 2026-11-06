@@ -10,6 +10,8 @@
 6. Restaurante deve vincular entregador ao pedido.
 7. Entregador deve atualizar status simplificado da entrega.
 8. Entregador deve enviar localizacao simplificada (latitude/longitude).
+9. Cliente deve visualizar a rota, a distancia e o tempo entre a loja e o
+   endereco de entrega selecionado.
 
 ## Nao funcionais
 
@@ -18,3 +20,4 @@
 3. Backend em FastAPI e frontend em Next.js.
 4. Deploy em Oracle Cloud via Docker Compose.
 5. Backup diario com pg_dump no ambiente de producao.
+6. Interface acessivel (WCAG 2 A/AA) e responsiva.

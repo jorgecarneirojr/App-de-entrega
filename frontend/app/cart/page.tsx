@@ -3,10 +3,11 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
+import { DeliveryRouteMap } from "@/components/delivery-route-map";
 import { Header } from "@/components/header";
 import { api } from "@/lib/api";
 import { getErrorMessage } from "@/lib/errors";
-import { Address, AddressPayload } from "@/lib/types";
+import { Address, AddressPayload, Restaurant } from "@/lib/types";
 import { useAuthStore } from "@/store/auth";
 import { useCartStore } from "@/store/cart";
 
@@ -18,7 +19,9 @@ const emptyAddress: AddressPayload = {
   state: "",
   zip_code: "",
   complement: "",
-  reference: ""
+  reference: "",
+  latitude: null,
+  longitude: null
 };
 
 export default function CartPage() {
@@ -43,6 +46,17 @@ export default function CartPage() {
     },
     enabled: !!user
   });
+
+  const restaurantQuery = useQuery({
+    queryKey: ["restaurant", restaurantId],
+    queryFn: async () => {
+      const response = await api.get<Restaurant>(`/restaurants/${restaurantId}`);
+      return response.data;
+    },
+    enabled: !!restaurantId
+  });
+
+  const selectedAddress = addressesQuery.data?.find((address) => address.id === selectedAddressId);
 
   useEffect(() => {
     if (!selectedAddressId && addressesQuery.data?.length) {
@@ -183,6 +197,31 @@ export default function CartPage() {
         </div>
 
         <div className="space-y-4">
+          <div className="card space-y-3">
+            <div>
+              <h2 className="text-xl font-black text-red-700">Rota da entrega</h2>
+              <p className="text-sm text-slate-500">
+                Distancia entre a loja e o endereco selecionado, com trajeto sugerido.
+              </p>
+            </div>
+            {restaurantQuery.data && selectedAddress ? (
+              <DeliveryRouteMap
+                origin={{
+                  latitude: restaurantQuery.data.latitude,
+                  longitude: restaurantQuery.data.longitude,
+                  label: restaurantQuery.data.name
+                }}
+                destination={{
+                  latitude: selectedAddress.latitude,
+                  longitude: selectedAddress.longitude,
+                  label: `${selectedAddress.street}, ${selectedAddress.number} - ${selectedAddress.district}`
+                }}
+              />
+            ) : (
+              <p className="text-sm text-slate-500">Selecione um endereco para calcular a rota.</p>
+            )}
+          </div>
+
           <div className="card">
             <h2 className="text-xl font-black text-red-700">Endereco de entrega</h2>
             {!user && <p className="mt-2 text-sm text-slate-500">Entre na sua conta para gerenciar enderecos.</p>}
@@ -225,7 +264,9 @@ export default function CartPage() {
                             state: address.state,
                             zip_code: address.zip_code,
                             complement: address.complement ?? "",
-                            reference: address.reference ?? ""
+                            reference: address.reference ?? "",
+                            latitude: address.latitude,
+                            longitude: address.longitude
                           });
                         }}
                       >

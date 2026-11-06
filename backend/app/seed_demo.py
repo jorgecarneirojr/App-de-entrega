@@ -19,6 +19,9 @@ RESTAURANTS = [
         "owner_email": "owner@demo.com",
         "owner_name": "Massa Express",
         "name": "Massa Express",
+        "address": "Rua Comendador Custodio Vieira, 120, Centro, Lorena/SP",
+        "latitude": -22.7305,
+        "longitude": -45.1235,
         "description": "Massas artesanais, lanches e pratos executivos para o dia a dia.",
         "delivery_fee": 7.5,
         "avg_delivery_time_min": 35,
@@ -34,6 +37,9 @@ RESTAURANTS = [
         "owner_email": "burger@demo.com",
         "owner_name": "Burger House",
         "name": "Burger House",
+        "address": "Avenida Salesopolis, 900, Vila Nunes, Lorena/SP",
+        "latitude": -22.736,
+        "longitude": -45.118,
         "description": "Hamburgueres artesanais, batatas rústicas e milkshakes.",
         "delivery_fee": 4.9,
         "avg_delivery_time_min": 25,
@@ -48,6 +54,9 @@ RESTAURANTS = [
         "owner_email": "mineiro@demo.com",
         "owner_name": "Sabor Mineiro",
         "name": "Sabor Mineiro",
+        "address": "Rua Doutor Rodrigues Alves, 250, Centro, Lorena/SP",
+        "latitude": -22.732,
+        "longitude": -45.1255,
         "description": "Comida caseira mineira com feijao tropeiro, frango com quiabo e tutu.",
         "delivery_fee": 6.9,
         "avg_delivery_time_min": 40,
@@ -62,6 +71,9 @@ RESTAURANTS = [
         "owner_email": "acai@demo.com",
         "owner_name": "Açaí & Cia",
         "name": "Açaí & Cia",
+        "address": "Rua Capitao Messias Ribeiro, 300, Bairro da Cruz, Lorena/SP",
+        "latitude": -22.7295,
+        "longitude": -45.1275,
         "description": "Açaí cremoso, bowls, vitaminas e complementos frescos.",
         "delivery_fee": 3.5,
         "avg_delivery_time_min": 20,
@@ -76,6 +88,9 @@ RESTAURANTS = [
         "owner_email": "pizza@demo.com",
         "owner_name": "Pizza Prime",
         "name": "Pizza Prime",
+        "address": "Avenida Targino Vilela Nunes, 1500, Jardim das Acacias, Lorena/SP",
+        "latitude": -22.725,
+        "longitude": -45.13,
         "description": "Pizzas de fermentacao natural, brotos e ingredientes selecionados.",
         "delivery_fee": 8.9,
         "avg_delivery_time_min": 45,
@@ -90,6 +105,9 @@ RESTAURANTS = [
         "owner_email": "baiano@demo.com",
         "owner_name": "Tempero Baiano",
         "name": "Tempero Baiano",
+        "address": "Rua Comendador Custodio Vieira, 800, Centro, Lorena/SP",
+        "latitude": -22.734,
+        "longitude": -45.12,
         "description": "Moqueca, acaraje, vatapa e temperos da Bahia.",
         "delivery_fee": 5.5,
         "avg_delivery_time_min": 35,
@@ -116,12 +134,18 @@ def _get_or_create_user(db, *, name: str, email: str, role: UserRole) -> User:
 def _get_or_create_restaurant(db, data: dict, owner: User) -> Restaurant:
     restaurant = db.scalar(select(Restaurant).where(Restaurant.name == data["name"]))
     if restaurant:
+        for field in ("address", "latitude", "longitude"):
+            if getattr(restaurant, field) is None:
+                setattr(restaurant, field, data.get(field))
         return restaurant
 
     restaurant = Restaurant(
         owner_user_id=owner.id,
         name=data["name"],
         description=data["description"],
+        address=data.get("address"),
+        latitude=data.get("latitude"),
+        longitude=data.get("longitude"),
         delivery_fee=data["delivery_fee"],
         avg_delivery_time_min=data["avg_delivery_time_min"],
     )
@@ -275,14 +299,16 @@ def seed_demo_data() -> None:
             db.add(
                 Address(
                     user_id=client.id,
-                    street="Rua das Flores",
-                    number="123",
-                    district="Centro",
-                    city="Sao Paulo",
+                    street="Avenida Targino Vilela Nunes",
+                    number="2000",
+                    district="Vila Nunes",
+                    city="Lorena",
                     state="SP",
-                    zip_code="01000-000",
+                    zip_code="12600-000",
                     complement="Apto 12",
                     reference="Proximo a praca",
+                    latitude=-22.7262654,
+                    longitude=-45.1138106,
                 )
             )
             db.flush()
